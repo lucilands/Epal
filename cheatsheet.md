@@ -3,13 +3,13 @@
 
 # Component prefabs
 
-### Utility components
+## Utility components
 | Component | Description | Data | Member functions | Requires components | Arguments |
 | --------- | ----------- | ---- | ---------------- | ------------------- | --------- |
 | epal.Transform | Stores positional data for an entity | <li>scale : epal.Vector2</li><li>position : epal.Vector2</li> |  |  |
 | epal.AudioPlayer | Enables playing audio on one of the audio channels | <li>clips : list[epal.Asset]</li> <li>playing : bool</li> <li>track : str</li> <li>channel_id : int</li> | <li>add_clip(clip : epal.Asset or str)</li> <li>play_track(track : str)</li> <li>play()</li> <li>next()</li> <li>pause()</li> <li>stop()</li> <li>fadeout(time : int)</li> <li>toggle()</li> |  |  |
 
-### Rendering components
+## Rendering components
 | Component | Description | Data | Member functions | Requires components | Arguments |
 | --------- | ----------- | ---- | ---------------- | ------------------- | --------- |
 | epal.Rect | Enables rendering of a rect for that entity | <li>color : epal.Color</li> | | <li>epal.Transform</li> |  |
