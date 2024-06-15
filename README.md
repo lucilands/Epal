@@ -69,3 +69,4 @@ If you have a component that relies on other components, there is a member funct
 If you want other constructor arguments for your component feel free to add them. To accsess them when you add an component, you can add as many keyword arguments as you want to ``add_component()``
 
 # Asset manager
+For assets, epal also got you covered, in epal there is an AssetManager class

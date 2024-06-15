@@ -21,6 +21,8 @@ class PlayerController(epal.Component):
         self.speed : float = speed
         self.slipperieness : float = slipperieness
         self.velocity : epal.Vector2 = epal.Vector2(0, 0)
+
+        self.parent.get_component(epal.Transform).scale = epal.Vector2(100, 100)
     
     def update(self):
         transform = self.parent.get_component(epal.Transform)
@@ -83,6 +85,7 @@ if __name__ == "__main__":
     image.add_component(epal.Image, asset = asset_manager.get_asset("Dog"))
     image.add_component(PlayerController, speed = 100, slipperieness = 0.8)
     image.add_component(SceneSwitcher, scene = scene_2)
+
 
     audio = epal.Entity()
     audio.add_component(AudioController)

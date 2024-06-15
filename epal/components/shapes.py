@@ -59,21 +59,17 @@ class Image(Component):
 
         self.require_component(Transform)
         self.asset = asset
-        self.image = None
 
     def awake(self):
         if self.asset == None:
-            raise AttributeError("No image path supplied")
+            self.asset = Asset.null
         if type(self.asset) == str:
-            self.image = pygame.image.load(self.path)
-        if type(self.asset) == Asset:
-            self.image = self.asset.get()
+            self.asset = Asset(self.path, self.path)
+            self.asset.load()
     
     def update(self):
         transform = self.parent.get_component(Transform)
-        position = transform.position.as_tuple()
+        rect = transform.as_rect()
+        self.asset.resize(transform.scale.as_tuple())
 
-        rect = self.image.get_rect()
-        rect.topleft = position
-
-        application.Application.get_window().__window__.blit(self.image, rect)
+        application.Application.get_window().__window__.blit(self.asset.get(), rect)

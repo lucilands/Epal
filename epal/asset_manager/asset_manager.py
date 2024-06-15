@@ -10,8 +10,10 @@ class AssetManager:
     
     def get_asset(self, name : str):
         ret = next((x for x in self.__assets__ if x.name == name), None)
+        if ret == None: ret = Asset.null
         if not ret.loaded:
             raise RuntimeError(f"Asset '{name}' is not loaded")
+        
         return ret
 
     def load_assets(self):

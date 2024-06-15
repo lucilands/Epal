@@ -9,6 +9,8 @@ from .entity import color
 
 from pygame import font, SRCALPHA, surface, mixer
 
+from .asset_manager import Asset
+
 
 
 def MultilineTextRender(font_object : font.Font, text : str, color : color.Color, background : color.Color = color.Color(0,0,0,0)):
@@ -38,6 +40,9 @@ class Application:
         self.__terminated__ = False
         self.__scenes__ : list[scene.Scene] = []
         self.__draw_overlay__ : bool = False
+
+        Asset.null = Asset("NULL")
+        Asset.null.load()
 
         
         if window == None:
