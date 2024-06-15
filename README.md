@@ -1,4 +1,4 @@
-# Epal A Entity component system (ECS) for pygame
+# Epal -  A Entity component system (ECS) for pygame
 
 Epal is a unity-like entity component system for python, based on pygame.
 The ECS is based on this article: <https://en.wikipedia.org/wiki/Entity_component_system>
@@ -69,4 +69,22 @@ If you have a component that relies on other components, there is a member funct
 If you want other constructor arguments for your component feel free to add them. To accsess them when you add an component, you can add as many keyword arguments as you want to ``add_component()``
 
 # Asset manager
-For assets, epal also got you covered, in epal there is an AssetManager class
+For assets, epal also got you covered, in epal there is an AssetManager class, this asset manager unifies all assets into one class, and makes it easy to get an asset from a name.
+
+## Usage
+Of course most classes in epal also allow non-epal assets, so paths or similar, but some epal classes require ```epal.Asset```'s, so its recommended to use the epal asset manager, especially on larger projects
+
+Initializing a asset manager is as simple as this:
+```python
+import epal
+
+
+...
+# Initialize the asset manager
+asset_manager = epal.AssetManager()
+# Add a couple of assets to the manager
+asset_manager.add_asset("Player", "./assets/player.png", epal.AssetType.Image)
+asset_manager.add_asset("Menu theme", "./assets/main_menu_theme.mp3", epal.AssetType.Audio)
+```
+
+Currently Images and Audio are the only asset types supported, but that is due to change
