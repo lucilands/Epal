@@ -52,7 +52,7 @@ class Application:
         print(f"Epal version {__globals__.VERSION}_{__globals__.VERSION_NAME} initialized. Have fun!")
 
     def __render_overlay__(self):
-        t = f"FPS: {round(self.window.get_fps())}\nDelta time: {self.delta_time}\nEntities: {len(self.active_scene.__entities__)}\nepal version: {__globals__.VERSION}_{__globals__.VERSION_NAME}\nMax audio channels: {mixer.get_num_channels()}"
+        t = f"FPS: {round(self.window.get_fps())}\nDelta time: {self.delta_time}\nEntities: {len(self.active_scene.__entities__)}\nepal version: {__globals__.VERSION}_{__globals__.VERSION_NAME}\nCurrent scene id: {self.active_scene.get_uuid()}\nNum scenes: {len(self.__scenes__)}\n\nMax audio channels: {mixer.get_num_channels()}"
         for channel in range(0, mixer.get_num_channels()):
             song = audio.get_song_in_channel(channel)
             if song != None: t+=f"\n  - Channel {channel}: '{song.track}' playing: {song.playing}"
