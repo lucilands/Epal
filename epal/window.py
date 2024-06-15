@@ -41,12 +41,12 @@ class Window:
 
     def __del__(self):
         pygame.display.quit()
-        self.terminate()
+        self.__terminate__()
     
     def __refresh__(self):
         pygame.display.flip()
     
-    def terminate(self):
+    def __terminate__(self):
         pygame.quit()
 
     def get_fps(self):
