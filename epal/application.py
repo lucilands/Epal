@@ -88,9 +88,9 @@ class Application:
         for s in self.__scenes__:
             uuids.append(s.__uuid__)
         
-        scene.__uuid__ = random() * 100000
+        scene.__uuid__ = round(random() * 100000)
         while scene.__uuid__ in uuids:
-            scene.__uuid__ = random() * 100000
+            scene.__uuid__ = round(random() * 100000)
 
         self.__scenes__.append(scene)
         self.active_scene = self.__scenes__[0]
