@@ -11,6 +11,8 @@ from pygame import font, SRCALPHA, surface, mixer
 
 from .asset_manager import Asset
 
+from tkinter import messagebox
+
 
 
 def MultilineTextRender(font_object : font.Font, text : str, color : color.Color, background : color.Color = color.Color(0,0,0,0)):
@@ -64,18 +66,22 @@ class Application:
         self.active_scene.__awake__()
 
         while self.__running__:
-            __check_events__()
-            self.delta_time = self.window.__update__()
+            try:
+                __check_events__()
+                self.delta_time = self.window.__update__()
 
-            self.active_scene.__update__()
+                self.active_scene.__update__()
 
-            if (Input.GetModifier(KeyMods.Alt) and Input.IsKeyPressed(KeyCode.F5)):
-                 self.__draw_overlay__ = not self.__draw_overlay__
+                if (Input.GetModifier(KeyMods.Alt) and Input.IsKeyPressed(KeyCode.F5)):
+                    self.__draw_overlay__ = not self.__draw_overlay__
 
-            if self.__draw_overlay__: self.__render_overlay__()
-            self.window.__refresh__()
-            if Input.GetQuitEvent():
+                if self.__draw_overlay__: self.__render_overlay__()
+                self.window.__refresh__()
+                if Input.GetQuitEvent():
+                    self.terminate()
+            except Exception as err:
                 self.terminate()
+                messagebox.showerror(f"A error occurred ({type(err).__name__})", err)
 
     def terminate(self):
         print("Terminating epal application. See you soon!")
