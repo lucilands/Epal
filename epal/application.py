@@ -12,7 +12,7 @@ from pygame import font, SRCALPHA, surface, mixer
 from .asset_manager import Asset
 
 from tkinter import messagebox
-
+import traceback
 
 
 def MultilineTextRender(font_object : font.Font, text : str, color : color.Color, background : color.Color = color.Color(0,0,0,0)):
@@ -81,7 +81,7 @@ class Application:
                     self.terminate()
             except Exception as err:
                 self.terminate()
-                messagebox.showerror(f"A error occurred ({type(err).__name__})", err)
+                messagebox.showerror(f"A error occurred ({type(err).__name__})", traceback.format_exc())
 
     def terminate(self):
         print("Terminating epal application. See you soon!")

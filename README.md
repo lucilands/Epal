@@ -5,6 +5,10 @@ The ECS is based on this article: <https://en.wikipedia.org/wiki/Entity_componen
 
 We all know that pygame can get pretty verbose on bigger projects, so the aim of Epal is to make it less verbose, while at the same time implementing an Entity component system (ECS)
 
+## Demo
+There is a demo attached to this project, the ```main.py``` file
+As of epal version 0.0.2 the demo requires an epal asset pack, to generate the asset pack just run the ```generate_asset_pack.py``` file
+
 ## Usage
 
 Epal has a pretty simple api, however there is a lot of boilerplate code to get out of the way. Since Epal is scene based, and a scene requires an application, a window, ready for entities, looks like this:
