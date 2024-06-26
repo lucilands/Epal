@@ -5,7 +5,7 @@ from . import __globals__
 
 
 class Window:
-    def __init__(self, width : int, height : int, clear_color : Color, max_fps : int = 60):
+    def __init__(self, width : int, height : int, clear_color : Color = Color(0, 0, 0), max_fps : int = 60):
         if __globals__.__window__ != None:
             raise RuntimeError("You may only have one window existing at a time")
 
