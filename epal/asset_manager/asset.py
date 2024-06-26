@@ -44,7 +44,7 @@ class Asset:
     def __load_from_binary__(cls, name : str, data : bytes, asset_info : dict):
         ret =  Asset(name)
         if asset_info["type"] == AssetType.Image:
-            ret.__asset__ = pygame.image.frombuffer(data, asset_info["type"], "RGBA")
+            ret.__asset__ = pygame.image.frombuffer(data, asset_info["size"], "RGBA")
         if asset_info["type"] == AssetType.Audio:
             ret.__asset__ = pygame.mixer.Sound(buffer = data)
         ret.loaded = True
