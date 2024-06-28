@@ -1,5 +1,5 @@
 from . import __globals__
-
+from .utils import EpalLogger
 
 
 class Scene:
@@ -8,8 +8,10 @@ class Scene:
         self.__uuid__ : int
 
         __globals__.__application__.add_scene(self)
+        self.__logger__ = EpalLogger(f"scene_{self.__uuid__}")
     
     def __awake__(self):
+        self.__logger__.log("Awake")
         self.__entities__.sort(key = lambda x: x.layer)
         for entity in self.__entities__:
             entity.__awake__()
