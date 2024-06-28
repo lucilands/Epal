@@ -6,3 +6,5 @@ from .entity import *
 from .scene import *
 from .audio import *
 from .input import Input, KeyCode
+
+from . import config

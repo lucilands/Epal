@@ -3,7 +3,7 @@ import os
 os.remove("epal_runtime.log")
 
 
-from  . import __globals__
+from  . import config
 
 class Vector2:
     def __init__(self, x : int, y : int):
@@ -26,17 +26,17 @@ class EpalLogger:
     def __init__(self, name : str):
         self.name = name
         
-        if __globals__.do_log:
+        if config.do_log:
             try:
                 self.file = open("epal_runtime.log", "a")
             except FileNotFoundError:
                 self.file = open("epal_runtime.log", "w")
     
     def log(self, msg : str):
-        if __globals__.do_log:
+        if config.do_log:
             self.file.write(f"[{self.name}]: {msg}\n")
             self.file.flush()
 
     def __del__(self):
-        if __globals__.do_log:
+        if config.do_log:
             self.file.close()
