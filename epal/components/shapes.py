@@ -59,6 +59,7 @@ class Image(Component):
 
         self.require_component(Transform)
         self.asset = asset
+        self.__asset__ : pygame.Surface = None
 
     def awake(self):
         if self.asset == None:
@@ -66,10 +67,15 @@ class Image(Component):
         if type(self.asset) == str:
             self.asset = Asset(self.path, self.path)
             self.asset.load()
+
+        self.__asset__ = self.asset
     
     def update(self):
         transform = self.parent.get_component(Transform)
         rect = transform.as_rect()
-        self.asset.resize(transform.scale.as_tuple())
+        self.__asset__ = pygame.Surface(transform.scale.as_tuple())
 
-        application.Application.get_window().__window__.blit(self.asset.get(), rect)
+        img : pygame.Surface = self.asset.get()
+        pygame.transform.scale(img, transform.scale.as_tuple(), self.__asset__)
+
+        application.Application.get_window().__window__.blit(self.__asset__, rect)
