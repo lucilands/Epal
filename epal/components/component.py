@@ -15,3 +15,4 @@ class Component:
     def require_component(self, component : Self):
         if not self.parent.has_component(component):
             self.parent.add_component(component)
+            self.parent.__auto_comps__.append(component)
