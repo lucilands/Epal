@@ -80,6 +80,7 @@ if __name__ == "__main__":
     image.get_component(epal.Transform).scale = epal.Vector2(100, 100)
     
     img2 = image.instantiate()
+    img2.layer = 0
     
     image.add_component(PlayerController, speed = 100, slipperieness = 0.8)
     image.add_component(SceneSwitcher, scene = scene_2)
