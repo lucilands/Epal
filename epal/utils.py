@@ -1,4 +1,7 @@
 from typing import Self
+import os
+os.remove("epal_runtime.log")
+
 
 class Vector2:
     def __init__(self, x : int, y : int):
