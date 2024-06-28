@@ -4,9 +4,12 @@ import ctypes
 from typing import TypeVar, Type
 import pygame
 
+from ..utils import EpalLogger
+
 import pickle
 
 
+__logger__ = EpalLogger("AssetDumper")
 
 def generate_header() -> bytearray:
     header = b'EPAL'
@@ -25,6 +28,7 @@ def convert_asset_to_bytes(asset : ass.Asset):
     return ret
 
 def generate_offset_table(offsets : dict[str, int]) -> bytearray:
+    __logger__.log("Generating offset table")
     ret = b''
     for asset in offsets.keys():
         ret += asset.encode()
@@ -55,6 +59,7 @@ def generate_offset_table(offsets : dict[str, int]) -> bytearray:
     return ret
 
 def dump(assets, file : io.BytesIO):
+    __logger__.log(f"Dumping assets to {file.name}")
     assets.load_assets()
     header = generate_header()
     length = len(header)
@@ -84,6 +89,7 @@ def dump(assets, file : io.BytesIO):
     content += b'OTEN'
     content += asset_data
 
+    __logger__.log("Writing to file")
     file.write(content)
 
 class InvalidAssetPackHeaderException(Exception):
@@ -127,11 +133,13 @@ def load_asset_offset_value(file : io.BytesIO) -> tuple[str, int, int, ass.Asset
 
 LoadType = TypeVar("LoadType")
 def load(file : io.BytesIO, type : Type[LoadType]) -> LoadType:
+    __logger__.log(f"Loading asset pack binary {file.name}")
     header = file.read(4)
     if header != b'EPAL': raise InvalidAssetPackHeaderException(file.name)
     
     offset_table = {}
 
+    __logger__.log("Reading offset table")
     offset = (0, 0)
     while offset[0] != "END_OF_TABLE":
         offset = load_asset_offset_value(file)
@@ -146,6 +154,7 @@ def load(file : io.BytesIO, type : Type[LoadType]) -> LoadType:
 
     ret = type()
 
+    __logger__.log("Loading and creating assets")
     for asset_offset in offset_table.keys():
         file.seek(offset_table[asset_offset]["byteoffset"])
         data = file.read(offset_table[asset_offset]["len"])

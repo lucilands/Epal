@@ -1,5 +1,6 @@
 from .asset import Asset, AssetType
 from . import asset_dumper
+from ..utils import EpalLogger
 from typing import Self
 import warnings
 
@@ -7,6 +8,7 @@ import warnings
 class AssetManager:
     def __init__(self):
         self.__assets__ : list[Asset] = []
+        self.__logger__ = EpalLogger("AssetManager")
 
     def add_asset(self, asset : Asset):
         self.__assets__.append(asset)
@@ -16,6 +18,7 @@ class AssetManager:
     
     def get_asset(self, name : str):
         ret = next((x for x in self.__assets__ if x.name == name), None)
+        self.__logger__.log(f"Fetching asset '{ret.name}'")
         if ret == None: 
             warnings.warn(f"Could not find asset {name}", UserWarning, 2)
             ret = Asset.null
@@ -29,6 +32,7 @@ class AssetManager:
             asset.load()
 
     def dump_asset_pack(self, filename : str) -> None:
+        self.__logger__.log(f"Writing asset pack to file {filename}")
         with open(filename, "wb") as f:
             asset_dumper.dump(self, f)
     
