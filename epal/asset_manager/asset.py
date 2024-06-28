@@ -37,9 +37,6 @@ class Asset:
             raise RuntimeError(f"Asset {self.name} is not loaded")
         return self.__asset__
     
-    def resize(self, new_size : tuple[int, int]):
-        self.__asset__ = pygame.transform.scale(self.get(), new_size)
-    
     @classmethod
     def __load_from_binary__(cls, name : str, data : bytes, asset_info : dict):
         ret =  Asset(name)
