@@ -3,6 +3,8 @@ from typing import Self
 import pygame
 import pathlib
 
+from ..utils import EpalLogger
+
 
 
 class AssetType(Enum):
@@ -22,10 +24,14 @@ class Asset:
         self.__asset__ = None
         self.loaded = False
 
+        self.__logger__ = EpalLogger(f"Asset('{self.name}')")
+
     def load(self):
         if self.asset_type == AssetType.Image:
+            self.__logger__.log(f"Loading image from path {self.path}")
             self.__asset__ = pygame.image.load(self.path).convert()
         if self.asset_type == AssetType.Audio:
+            self.__logger__.log(f"Loading audio from path {self.path}")
             self.__asset__ = pygame.mixer.Sound(self.path)
         
         self.loaded = True

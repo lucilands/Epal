@@ -6,6 +6,7 @@ from random import random
 from . import audio
 from . import scene
 from .entity import color
+from .utils import EpalLogger
 
 from pygame import font, SRCALPHA, surface, mixer
 
@@ -42,16 +43,18 @@ class Application:
         self.__terminated__ = False
         self.__scenes__ : list[scene.Scene] = []
         self.__draw_overlay__ : bool = False
+        self.__logger__ = EpalLogger("Application")
 
         Asset.null = Asset("NULL")
         Asset.null.load()
 
-        
+        self.__logger__.log("Start!")
         if window == None:
             raise Exception("A rendering application is no where to be lazy, don't set it to 'None'")
 
         __globals__.__application__ = self
         print(f"Epal version {__globals__.VERSION}_{__globals__.VERSION_NAME} initialized. Have fun!")
+        self.__logger__.log(f"Epal version {__globals__.VERSION}_{__globals__.VERSION_NAME} initialized. Have fun!")
 
     def __render_overlay__(self):
         t = f"FPS: {round(self.window.get_fps())}\nDelta time: {self.delta_time}\nEntities: {len(self.active_scene.__entities__)}\nepal version: {__globals__.VERSION}_{__globals__.VERSION_NAME}\nCurrent scene id: {self.active_scene.get_uuid()}\nNum scenes: {len(self.__scenes__)}\n\nMax audio channels: {mixer.get_num_channels()}"
@@ -62,6 +65,7 @@ class Application:
         self.window.__window__.blit(MultilineTextRender(font.Font(size=30), t, color.Color(255, 255, 255), color.Color(100, 100, 100, 150)), (10, 10))
 
     def run(self):
+        self.__logger__.log("Starting application mainloop")
         self.__running__ = True
         self.active_scene.__awake__()
 
@@ -85,6 +89,7 @@ class Application:
 
     def terminate(self):
         print("Terminating epal application. See you soon!")
+        self.__logger__.log("Terminating...")
         self.__running__ = False
         self.__terminated__ = True
         if self.window != None: self.window.__del__()

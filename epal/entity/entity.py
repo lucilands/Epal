@@ -5,7 +5,7 @@ import warnings
 from .. import __globals__
 from ..components import component
 from ..scene import Scene
-
+from ..utils import EpalLogger
 
 
 class Entity:
@@ -24,6 +24,8 @@ class Entity:
         self.__comp_types__ : list[Type[component.Component]] = []
         self.__auto_comps__ : list[Type[component.Component]] = []
 
+        self.__logger__ = EpalLogger(f"[scene_{self.__scene__.get_uuid()}]{type(self).__name__}_{self.__scene__.get_all_entities().index(self)}")
+
         for key, value in kwargs.items():
             if key not in dir(self):
                 setattr(self, key, value)
@@ -41,7 +43,7 @@ class Entity:
 
     def add_component(self, component : Type[component.Component], **kwargs) -> None:
         if not self.has_component(component):
-            print(f"Adding component '{component.__name__}' to '{type(self).__name__}' instance {self.__scene__.get_all_entities().index(self)} of scene {self.__scene__.get_uuid()}")
+            self.__logger__.log(f"Adding component '{component.__name__}'")
             self.__components__.append(component(self, **kwargs))
             self.__comp_types__.append(component)
         else:

@@ -16,3 +16,19 @@ class Vector2:
         return Vector2(self.x * other, self.y * other)
     def __div__(self, other) -> Self:
         return Vector2(self.x / other, self.y / other)
+
+class EpalLogger:
+    def __init__(self, name : str):
+        self.name = name
+        
+        try:
+            self.file = open("epal_runtime.log", "a")
+        except FileNotFoundError:
+            self.file = open("epal_runtime.log", "w")
+    
+    def log(self, msg : str):
+        self.file.write(f"[{self.name}]: {msg}\n")
+        self.file.flush()
+
+    def __del__(self):
+        self.file.close()
