@@ -1,7 +1,8 @@
 from typing import Self
 import os
-os.remove("epal_runtime.log")
 
+try: os.remove("epal_runtime.log")
+except FileNotFoundError: pass
 
 from  . import config
 
