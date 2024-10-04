@@ -70,13 +70,13 @@ if __name__ == "__main__":
     window = epal.Window(1080, 720, epal.Color(255, 255, 255))
     app = epal.Application(window)
 
-    asset_two = epal.AssetManager.load_asset_pack("test.eap")
+    assets = epal.AssetManager.load_asset_pack("test.eap")
 
     main_scene = epal.Scene()
     scene_2 = epal.Scene()
 
     image = epal.Entity(layer = 1)
-    image.add_component(epal.Image, asset = asset_two.get_asset("Dog"))
+    image.add_component(epal.Image, asset = assets.get_asset("Dog"))
     image.get_component(epal.Transform).scale = epal.Vector2(100, 100)
     
     img2 = image.instantiate()
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     audio = epal.Entity()
     audio.add_component(AudioController)
     
-    audio.get_component(epal.AudioPlayer).add_clip(asset_two.get_asset("Green Sky"))
+    audio.get_component(epal.AudioPlayer).add_clip(assets.get_asset("Green Sky"))
 
     text = epal.Entity(scene = scene_2, layer = 1)
     layerer = epal.Entity(scene = scene_2, layer = 2)
