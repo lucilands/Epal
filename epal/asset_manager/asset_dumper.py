@@ -20,10 +20,10 @@ def convert_asset_to_bytes(asset : ass.Asset):
     ret = b''
 
     if asset.asset_type == ass.AssetType.Image:
-        ret += pygame.image.tobytes(asset.get(), "RGBA")
+        ret += pickle.dumps(pygame.image.tobytes(asset.get(), "RGBA"))
 
     if asset.asset_type == ass.AssetType.Audio:
-        ret += asset.get().get_raw()
+        ret += pickle.dumps(asset.get().get_raw())
 
     return ret
 
@@ -157,7 +157,7 @@ def load(file : io.BytesIO, type : Type[LoadType]) -> LoadType:
     __logger__.log("Loading and creating assets")
     for asset_offset in offset_table.keys():
         file.seek(offset_table[asset_offset]["byteoffset"])
-        data = file.read(offset_table[asset_offset]["len"])
+        data = pickle.loads(file.read(offset_table[asset_offset]["len"]))
         ret.add_asset(ass.Asset.__load_from_binary__(asset_offset, data, offset_table[asset_offset]))
     
     return ret
