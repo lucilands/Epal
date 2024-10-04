@@ -50,7 +50,7 @@ class Application:
 
         self.__logger__.log("Start!")
         if window == None:
-            raise Exception("A rendering application is no where to be lazy, don't set it to 'None'")
+            raise Exception("A rendering application is no where to be lazy, don't set window to 'None'")
 
         __globals__.__application__ = self
         print(f"Epal version {__globals__.VERSION}_{__globals__.VERSION_NAME} initialized. Have fun!")
