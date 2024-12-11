@@ -53,7 +53,12 @@ class KeyCode(Enum):
     ArrowDown = pygame.K_DOWN
     ArrowLeft = pygame.K_LEFT
     ArrowRight = pygame.K_RIGHT
-    
+
+class MouseButtons(Enum):
+    Left = 1
+    Middle = 2
+    Right = 3
+
 class KeyMods(Enum):
     Control = pygame.KMOD_CTRL
     Alt = pygame.KMOD_ALT
@@ -125,4 +130,6 @@ class Input:
             return __mods__ & kmod.value != 0
         
     def GetMousePosition() -> tuple[int, int]:
-        return pygame.mouse.get_pos()
+        return pygame.mouse.set_pos()
+    def IsMousePressed(button_id : int) -> bool:
+        return pygame.mouse.get_pressed()
