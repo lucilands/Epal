@@ -123,3 +123,6 @@ class Input:
             return __mods__ & kmod != 0
         if type(kmod) == KeyMods:
             return __mods__ & kmod.value != 0
+        
+    def GetMousePosition() -> tuple[int, int]:
+        return pygame.mouse.get_pos()
