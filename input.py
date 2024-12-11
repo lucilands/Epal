@@ -132,4 +132,4 @@ class Input:
     def GetMousePosition() -> tuple[int, int]:
         return pygame.mouse.get_pos()
     def IsMousePressed(button_id : int) -> bool:
-        return pygame.mouse.get_pressed()
+        return pygame.mouse.get_pressed()[button_id]
