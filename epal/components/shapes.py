@@ -15,13 +15,14 @@ class Rect(Component):
 
         self.require_component(Transform)
         self.color : Color = Color(0, 0, 0)
+        self.rounding : int = 0
     
     def update(self):
         transform = self.parent.get_component(Transform)
         position = transform.position.as_tuple()
         size = transform.scale.as_tuple()
         pygame.draw.rect(application.Application.get_window().__window__, self.color.as_tuple(),
-                         pygame.Rect(position[0], position[1], size[0], size[1]))
+                         pygame.Rect(position[0], position[1], size[0], size[1]), self.rounding)
         
 class Circle(Component):
     def __init__(self, parent):
