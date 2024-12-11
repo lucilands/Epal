@@ -1,0 +1,26 @@
+[Asset('NULL')]: Loading image from path C:\Users\lucla\dev\Epal\epal\asset_manager/null_asset.png
+[Application]: Start!
+[Application]: Epal version 0.0.2_winterburrow initialized. Have fun!
+[AssetDumper]: Loading asset pack binary test.eap
+[AssetDumper]: Reading offset table
+[AssetDumper]: Loading and creating assets
+[AssetManager]: Fetching asset 'Dog'
+[[scene_45234]Entity_0]: Adding component 'Image'
+[[scene_45234]Entity_0]: Adding component 'Transform'
+[[scene_45234]Entity_1]: Adding component 'Image'
+[[scene_45234]Entity_1]: Adding component 'Transform'
+[[scene_45234]Entity_0]: Adding component 'PlayerController'
+[[scene_45234]Entity_0]: Adding component 'SceneSwitcher'
+[[scene_45234]Entity_2]: Adding component 'AudioController'
+[[scene_45234]Entity_2]: Adding component 'AudioPlayer'
+[AssetManager]: Fetching asset 'Green Sky'
+[[scene_98735]Entity_0]: Adding component 'Text'
+[[scene_98735]Entity_0]: Adding component 'Transform'
+[[scene_98735]Entity_0]: Adding component 'SceneSwitcher'
+[[scene_98735]Entity_1]: Adding component 'Layerer'
+[[scene_98735]Entity_1]: Adding component 'Rect'
+[[scene_98735]Entity_1]: Adding component 'Transform'
+[Application]: Starting application mainloop
+[scene_45234]: Awake
+[scene_98735]: Awake
+[Application]: Terminating...
