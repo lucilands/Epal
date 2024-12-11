@@ -130,6 +130,6 @@ class Input:
             return __mods__ & kmod.value != 0
         
     def GetMousePosition() -> tuple[int, int]:
-        return pygame.mouse.set_pos()
+        return pygame.mouse.get_pos()
     def IsMousePressed(button_id : int) -> bool:
         return pygame.mouse.get_pressed()
