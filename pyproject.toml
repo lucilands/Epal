@@ -24,7 +24,6 @@ license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
 
-
 [project.urls]
 Homepage = "https://github.com/lucilands/Epal"
 Issues = "https://github.com/lucilands/Epal/issues"
