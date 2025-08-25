@@ -2,5 +2,8 @@
 .vscode
 **.log
 
+/dist
+*.egg-info
+
 # Test asset pack
 test.eap
